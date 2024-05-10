@@ -61,12 +61,14 @@ function newMessage(message, sent_by_id){
 		return false;
 	}
     let message_element
+    let date = new Date().toString().split(' ')
+    let timenow = date[4].substring(0,5)
     if(sent_by_id == USER_ID){
         message_element = `
 			<div class="d-flex mb-4 replied">
 				<div class="msg_cotainer_send">
 					${message}
-					<span class="msg_time_send">0:00 AM, Today</span>
+					<span class="msg_time_send">${timenow} ${date[1]} ${date[2]}</span>
 				</div>
 			</div>
 	    `
@@ -76,10 +78,11 @@ function newMessage(message, sent_by_id){
             <div class="d-flex mb-4 received">
                 <div class="msg_cotainer">
                     ${message}
-                    <span class="msg_time">0:00 AM, Today</span>
+                    <span class="msg_time">${timenow} ${date[1]} ${date[2]}</span>
                 </div>
             </div>
         `
+        // ${date.getHours()}:${date.getMinutes()} , ${date.getDay()}.${date.getMonth()}.${date.getFullYear()}
     }
 
     message_body.append($(message_element))
